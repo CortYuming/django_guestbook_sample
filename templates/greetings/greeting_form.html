@@ -1,0 +1,5 @@
+<form action="" method="post">{% csrf_token %}
+  {{ form.as_p}}
+  <input type="button" value="Previous Page" onClick="javascript:history.go(-1);">
+  <input type="submit" />
+</form>
