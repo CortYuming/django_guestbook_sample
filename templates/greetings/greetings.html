@@ -1,16 +1,36 @@
+{% extends "base.html" %}
+{% block title %} {% endblock title %}
+
+{% block content %}
 <h1>Greetings</h1>
+
+<hr />
+
 <form method="post" action="{% url 'greetings:list' %}">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" />
+  <input type="submit" value="Submit" class="btn btn-default" />
 </form>
 
-<ul>
-  {% for greeting in greetings %}
-  <li>
-    {{ greeting.name }} {{ greeting.comment }}
-  </li>
-  {% endfor %}
-</ul>
+<hr />
 
-{% include "paginate.html" with page_objects=greetings %}
+<table class="table table-hover">
+  <tbody>
+    {% for greeting in greetings %}
+    <tr>
+      <td class="active" width="30%">
+        {{ greeting.name }}
+        <br />
+        <small class="text-muted">
+          {{ greeting.date_created }}
+        </small>
+      </td>
+      <td>{{ greeting.comment }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include "pagination/bootstrap.html" with page_objects=greetings %}
+{% endblock content %}
+
