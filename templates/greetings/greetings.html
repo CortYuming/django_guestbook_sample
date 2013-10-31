@@ -1,0 +1,15 @@
+<h1>Greetings</h1>
+<form method="post" action="{% url 'greetings:list' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" />
+</form>
+
+<ul>
+  {% for greeting in greetings %}
+  <li>
+    {{ greeting.name }} {{ greeting.comment }}
+  </li>
+  {% endfor %}
+</ul>
+
